@@ -1,0 +1,56 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.example.moogata.service;
+
+import java.util.List;
+import com.example.moogata.dao.EmployeeDao;
+import com.example.moogata.model.Employee;
+
+/**
+ *
+ * @author Windows
+ */
+public class EmployeeService {
+
+    private final EmployeeDao employeeDao = new EmployeeDao();
+
+    /**
+     * ล็อกอินพนักงานเข้าระบบ POS — ตรงกับ use case ของร้าน BONUS SUKI
+     * ที่แคชเชียร์/ผู้จัดการต้องล็อกอินก่อนเปิดโต๊ะหรือคิดเงิน
+     *
+     * @return วัตถุ Employee เมื่อชื่อและรหัสผ่านถูกต้อง, null เมื่อไม่ถูกต้อง
+     */
+    public Employee login(String name, String password) {
+        Employee employee = employeeDao.getByName(name);
+        if (employee != null && employee.getPassword().equals(password)) {
+            return employee;
+        }
+        return null;
+    }
+
+    // คำเตือนเชิงวิชาการ: การเก็บรหัสผ่านเป็น plain text แล้วเทียบด้วย equals
+    // เหมาะเฉพาะระดับฝึกหัด — ระบบจริงต้องเก็บ hash (เช่น bcrypt) และเทียบ hash
+    public List<Employee> getAll()  {
+        return employeeDao.getAll();
+    }
+    
+    public Employee get(int id) {
+        return employeeDao.get(id);
+    }
+    
+    public Employee save(Employee employee) {
+        return employeeDao.save(employee);
+    }
+    
+    public Employee update(Employee employee) {
+        return employeeDao.update(employee);
+    }
+    
+    public int delete(int id) {
+        Employee target = new Employee();
+        target.setId(id);
+        return employeeDao.delete(target);
+    }
+}
