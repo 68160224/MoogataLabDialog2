@@ -8,6 +8,10 @@ import com.example.moogata.model.Employee;
 import com.example.moogata.service.EmployeeService;
 import javax.swing.JOptionPane;
 
+import javax.swing.UIManager;
+import java.awt.Font;
+import javax.swing.plaf.FontUIResource;
+
 /**
  *
  * @author Windows
@@ -155,6 +159,15 @@ public class LoginFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    public static void setGlobalFont(Font font) {
+        FontUIResource fontResource = new FontUIResource(font);
+        for (Object key : UIManager.getDefaults().keySet()) {
+            if (key.toString().toLowerCase().endsWith(".font")) {
+                UIManager.put(key, fontResource);
+            }
+        }
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -175,6 +188,12 @@ public class LoginFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new LoginFrame().setVisible(true));
+        // กำหนดฟอนต์ตามระบบปฏิบัติการ (Windows: Leelawadee UI / Tahoma)
+        setGlobalFont(new Font("Leelawadee UI", Font.PLAIN, 12));
+
+        java.awt.EventQueue.invokeLater(() -> {
+            new LoginFrame().setVisible(true); // หรือหน้าแรกของโปรเจกต์คุณ
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -100,7 +100,7 @@ public class EmployeeDialog extends javax.swing.JDialog {
         txtPassword.setPreferredSize(new java.awt.Dimension(200, 30));
 
         cmbRole.setFont(new java.awt.Font("Leelawadee UI", 0, 12)); // NOI18N
-        cmbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "พนักงาน,", "ผู้ตัดการ" }));
+        cmbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "พนักงาน,", "ผู้จัดการ" }));
         cmbRole.setPreferredSize(new java.awt.Dimension(200, 30));
 
         btnCancel.setFont(new java.awt.Font("Leelawadee UI", 0, 12)); // NOI18N
